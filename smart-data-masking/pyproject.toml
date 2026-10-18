@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smartmask"
+version = "1.0.0"
+description = "Smart Data Masking System for PII Protection (Core engine and secure API)"
+requires-python = ">=3.11"
+readme = "README.md"
+authors = [{ name = "Smart Data Masking Project" }]
+license = { text = "Proprietary - internal prototype" }
+dependencies = [
+    "sqlalchemy>=2.0,<3.0",
+    "fastapi>=0.110,<1",
+    "uvicorn[standard]>=0.27,<1",
+    "pwdlib[argon2]>=0.2,<1",
+    "PyJWT>=2.8,<3",
+    "psycopg[binary]>=3.1,<4",
+    "python-multipart>=0.0.9",
+    "streamlit>=1.35,<2",
+    "requests>=2.31,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0,<9.0",
+    "pytest-cov>=4.0",
+    "httpx>=0.27,<1",
+]
+
+[project.scripts]
+smartmask = "smartmask.cli:main"
+smartmask-api = "smartmask.api.app:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["smartmask*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-q"
+markers = ["postgres: requires a dedicated PostgreSQL test database"]
