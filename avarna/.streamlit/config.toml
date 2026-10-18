@@ -1,0 +1,12 @@
+[theme]
+base = "light"
+primaryColor = "#3157D5"
+backgroundColor = "#F7F9FC"
+secondaryBackgroundColor = "#EDF1F7"
+textColor = "#17243D"
+font = "IBM Plex Sans"
+headingFont = "IBM Plex Sans"
+codeFont = "IBM Plex Mono"
+
+[server]
+enableStaticServing = true
